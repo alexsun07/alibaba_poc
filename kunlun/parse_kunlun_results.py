@@ -76,7 +76,7 @@ def parse_md_file(filepath: str) -> Optional[Dict[str, str]]:
                     # 根据key提取所需的值
                     if 'Generate Tokens  Per Second(GTPS)' in key:
                         result['GTPS'] = value.split()[0]  # 只取数字部分
-                    elif 'Total    Tokens  Per Second(TPS)' in key:
+                    elif 'Total    Tokens  Per Second' in key:
                         result['TPS'] = value.split()[0]
                     elif 'Queries Per Second(QPS)' in key:
                         # 从 "3.3213 reqs/s" 中提取数字
