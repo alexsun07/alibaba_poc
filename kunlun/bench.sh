@@ -13,10 +13,17 @@ INPUT_OUTPUT_COMBOS=(
 )
 for COMBO in "${INPUT_OUTPUT_COMBOS[@]}"; do
     read -r MIN_INPUT MAX_INPUT MIN_OUTPUT MAX_OUTPUT <<< "$COMBO"
-    CONCURRENCY="32 64 128 256"
-    if [ $MIN_INPUT -ge 10000 ]; then
-        CONCURRENCY="8 16 32 64"
+    CONCURRENCY="256"
+    if [ $MIN_INPUT -ge 16000 ]; then
+        CONCURRENCY="8"
+    elif [ $MIN_INPUT -ge 11000 ]; then
+        CONCURRENCY="64"
+    elif [ $MIN_INPUT -ge 3600 ]; then
+        CONCURRENCY="128"
+    elif [ $MIN_INPUT -ge 3000 ]; then
+        CONCURRENCY="64"
     fi
+
     for CON in $CONCURRENCY; do
         echo "test config: concurrency=$CON, min_input=$MIN_INPUT, max_input=$MAX_INPUT, min_output=$MIN_OUTPUT, max_output=$MAX_OUTPUT"
         if [ $CON -le 30 ]; then
@@ -35,7 +42,7 @@ for COMBO in "${INPUT_OUTPUT_COMBOS[@]}"; do
             --query_num $PROMPTS \
             --result_dir ~/results/ \
             --model_path $MODEL \
-            --is_sla False \
+            --is_sla True \
             --sla_decode 50 \
             --sla_prefill 3000
 
