@@ -16,7 +16,7 @@ On prefill node: `bash start_prefill.sh`
 
 Note that you should avoid mem shrink by mooncake. 
 
-*Note*: It is normal if you see `Failed to register memory 0x768b23fff010: Cannot allocate memory [12]` in log. But it is NOT supposed to have `The buffer length exceeds device max_mr_size, shrink it to 2147483648: Success [0]`. AINIC cannot register memory buffer larger than 2 GB. Use a smaller value for the `--mem-fraction-static ` to mitigate.
+**Note**: It is normal if you see `Failed to register memory 0x768b23fff010: Cannot allocate memory [12]` in log. But it is NOT supposed to have `The buffer length exceeds device max_mr_size, shrink it to 2147483648: Success [0]`. AINIC cannot register memory buffer larger than 2 GB. Use a smaller value for the `--mem-fraction-static ` to mitigate.
 
 On decode node: `bash start_decode.sh`
 
